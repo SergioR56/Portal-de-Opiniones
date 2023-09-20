@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
   res.send('Bienvenido a la web de reseñas');
 });
 
-app.post('/users', [
+app.post('/users'), [
 
   check('mail').isEmail().normalizeEmail(),
   check('contraseña').isLength({ min: 6 }),
@@ -59,7 +59,6 @@ app.post('/reseñas'), [
   if (!errors.isEmpty)
   {
     return res.status(422).json({ errors: errors.array() });
-  }
   }
 app.use((err, req, res, next) => {
   console.error(err);
@@ -88,4 +87,3 @@ app.use((err, req, res, next) => {
 
 app.listen(process.env.PORT, () =>{
     console.log(`Server is running at https://localhost:${process.env.PORT}`);
-});
