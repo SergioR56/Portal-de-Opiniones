@@ -45,7 +45,7 @@ app.post('/users'), [
   }
 
   res.json({ message: 'Usuario creado' });
-});
+};
 
 app.post('/reseñas'), [
 
@@ -53,7 +53,7 @@ app.post('/reseñas'), [
   check('texto').notEmpty(),
 ], (req, res) => 
 
-  const errors = validationResult(req);{
+  const errors = validationResult(req);
 
 
   if (!errors.isEmpty)

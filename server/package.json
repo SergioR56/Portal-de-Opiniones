@@ -6,7 +6,8 @@
     "scripts": {
         "initDb": "node src/db/initDb.js",
         "dev": "nodemon ./app.js",
-        "start": "nodemon app.js"
+        "start": "nodemon app.js",
+        "lint": "eslint -c .eslintrc.js"
     },
     "keywords": [],
     "author": "",
