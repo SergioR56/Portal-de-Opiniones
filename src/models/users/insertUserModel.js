@@ -1,5 +1,13 @@
 let connnection;
 const bcrypt = require('bcrypt');
+
+const getDb = require('../../db/getDb');
+
+const{
+    emailAlreadyRegisteredError,
+    userAlreadyRegisteredError,
+} = require('../../services/errorService');
+
 try {
     connection = await getDb();
 
@@ -9,9 +17,7 @@ try {
     );
 
     if (users.length > 0) {
-        const err = new Error ('Another user already exists with this email address');
-        err.httpStatus = 409;
-        throw err;
+        emailAlreadyRegisteredError();     
     }
 
         [users] = await connection.query(
@@ -20,9 +26,7 @@ try {
     );
 
     if (users.length > 0) {
-        const err = new Error ('Another user already exists with this username');
-        err.httpStatus = 409;
-        throw err;
+        userAlreadyRegisteredError();
     }
 
 const hashedPassword = await bcrypt.hash(password, 10);

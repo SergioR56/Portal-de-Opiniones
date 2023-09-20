@@ -1,4 +1,4 @@
-const errorController = (err, req, res, next) => {
+const errorController = (err, req, res) => {
     console.error(err);
 
     res.status(err.httpStatus || 500).send({

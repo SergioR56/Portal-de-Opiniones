@@ -14,7 +14,6 @@ const {
 } = require('./src/controllers/errors');
 
 
-
 const { check, validationResult } = require('express-validator'); 
 
 const app = express();
@@ -24,6 +23,10 @@ app.use(fileUpload());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(routes);
+app.use(notFoundController);
+app.use(errorController);
 
 app.get('/', (req, res) => {
   res.send('Bienvenido a la web de reseñas');
@@ -35,8 +38,9 @@ app.post('/users'), [
   check('contraseña').isLength({ min: 6 }),
 ], (req, res) => {
 
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
+  const errors = validationResult(req)
+  if (!errors.isEmpty) 
+  {
     return res.status(422).json({ errors: errors.array() });
   }
 
@@ -47,13 +51,15 @@ app.post('/reseñas'), [
 
 
   check('texto').notEmpty(),
-], (req, res) => {
+], (req, res) => 
 
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
+  const errors = validationResult(req);{
+
+
+  if (!errors.isEmpty)
+  {
     return res.status(422).json({ errors: errors.array() });
   }
-}
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(err.httpStatus || 500).json({
@@ -78,6 +84,6 @@ app.use((err, req, res, next) => {
 
 
 
+
 app.listen(process.env.PORT, () =>{
     console.log(`Server is running at https://localhost:${process.env.PORT}`);
-})
