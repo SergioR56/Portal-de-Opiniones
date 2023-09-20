@@ -3,13 +3,18 @@ require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+
 const bodyParser = require('body-parser'); 
+const {
+    notFoundController,
+    errorController,
+} = require('./src/controllers/errors');
+
+
 
 const { check, validationResult } = require('express-validator'); 
 const app = express();
-
 app.use(cors());
-app.use(express.json());
 app.use(morgan('dev'));
 
 app.use(bodyParser.json());
