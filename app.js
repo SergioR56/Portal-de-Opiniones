@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
-const morgan = require('morgan');
+const fileUpload = require('express-fileupload');
 const cors = require('cors');
 
 
@@ -20,6 +20,7 @@ const { check, validationResult } = require('express-validator');
 const app = express();
 app.use(cors());
 app.use(morgan('dev'));
+app.use(fileUpload());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -44,6 +45,7 @@ app.post('/users', [
 
 app.post('/reseñas', [
 
+
   check('texto').notEmpty(),
 ], (req, res) => {
 
@@ -59,6 +61,7 @@ app.use((err, req, res, next) => {
     message: err.message,
   });
 });
+
 
 
 
