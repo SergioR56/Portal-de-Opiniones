@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
   res.send('Bienvenido a la web de reseñas');
 });
 
-app.post('/users', [
+app.post('/users'), [
 
   check('mail').isEmail().normalizeEmail(),
   check('contraseña').isLength({ min: 6 }),
@@ -43,7 +43,7 @@ app.post('/users', [
   res.json({ message: 'Usuario creado' });
 });
 
-app.post('/reseñas', [
+app.post('/reseñas'), [
 
 
   check('texto').notEmpty(),
@@ -53,7 +53,7 @@ app.post('/reseñas', [
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.array() });
   }
-
+}
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(err.httpStatus || 500).json({
