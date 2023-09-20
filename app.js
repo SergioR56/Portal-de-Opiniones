@@ -1,9 +1,5 @@
 require('dotenv').config();
-require(["validate.js"], function(validate) {
-  // ...
-});
 
-var validate = require("validate.js");
 const express = require('express');
 const fileUpload = require('express-fileupload');
 const cors = require('cors');
