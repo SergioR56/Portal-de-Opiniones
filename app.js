@@ -4,6 +4,9 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 
+
+const routes = require('./src/routes');
+
 const bodyParser = require('body-parser'); 
 const {
     notFoundController,
@@ -13,6 +16,7 @@ const {
 
 
 const { check, validationResult } = require('express-validator'); 
+
 const app = express();
 app.use(cors());
 app.use(morgan('dev'));
@@ -47,9 +51,6 @@ app.post('/reseñas', [
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.array() });
   }
-
-  res.json({ message: 'Reseña publicada' });
-});
 
 app.use((err, req, res, next) => {
   console.error(err);
