@@ -2,22 +2,22 @@
 const getDb = require('../../db/getDb');
 
 // Función que se conectará a la base de datos y creará un post.
-const insertComentarioModel = async (text, userId) => {
+const insertPostModel = async (text, userId) => {
     let connection;
 
     try {
         connection = await getDb();
 
-        const [comentario] = await connection.query(
-            `INSERT INTO comentarios(text, userId) VALUES (?, ?)`,
+        const [post] = await connection.query(
+            `INSERT INTO posts(text, userId) VALUES (?, ?)`,
             [text, userId]
         );
 
         // Retornamos el id del post que acabamos de insertar.
-        return comentario.insertId;
+        return post.insertId;
     } finally {
         if (connection) connection.release();
     }
 };
 
-module.exports = insertComentarioModel;
+module.exports = insertPostModel;

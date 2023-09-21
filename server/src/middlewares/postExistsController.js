@@ -5,22 +5,22 @@ const getDb = require('../db/getDb');
 const { notFoundError } = require('../services/errorService');
 
 // Función controladora intermedia que se conectará a la base de datos y comprobará
-// si existe un tweet con el id que obtenemos por path params.
-const comentarioExistsController = async (req, res, next) => {
+// si existe un post con el id que obtenemos por path params.
+const postExistsController = async (req, res, next) => {
     let connection;
 
     try {
         connection = await getDb();
 
-        const { comentarioId } = req.params;
+        const { postId } = req.params;
 
-        const [comentarios] = await connection.query(
-            `SELECT id FROM tweets WHERE id = ?`,
-            [comentarioId]
+        const [posts] = await connection.query(
+            `SELECT id FROM posts WHERE id = ?`,
+            [postId]
         );
 
-        if (comentarios.length < 1) {
-            notFoundError('comentario');
+        if (posts.length < 1) {
+            notFoundError('post');
         }
 
         // Pasamos el control al siguiente middleware.
@@ -32,4 +32,4 @@ const comentarioExistsController = async (req, res, next) => {
     }
 };
 
-module.exports = comentarioExistsController;
+module.exports = postExistsController;
