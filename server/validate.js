@@ -8,7 +8,7 @@
  */
 
 (function(exports, module, define) {
-  "use strict";
+  // "use strict";
 
   // The main function that calls the validators specified by the constraints.
   // The options are the following:

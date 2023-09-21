@@ -1,6 +1,4 @@
-let connnection;
 const bcrypt = require('bcrypt');
-
 const getDb = require('../../db/getDb');
 
 const {
@@ -8,12 +6,14 @@ const {
     userAlreadyRegisteredError,
 } = require('../../services/errorService');
 
-const insertUserModel = async () => {
-    try {
-        connection = await getDb();
+const insertUserModel = async (username, email, password) => {
+    let conexion;
 
-        let [users] = await connection.query(
-            'SELECT id FROM users WHERE email = ?',
+    try {
+        conexion = await getDb();
+
+        let [users] = await conexion.query(
+            `SELECT id FROM users WHERE email = ?`,
             [email]
         );
 
@@ -21,8 +21,8 @@ const insertUserModel = async () => {
             emailAlreadyRegisteredError();
         }
 
-        [users] = await connection.query(
-            'SELECT id FROM users WHERE username = ?',
+        [users] = await conexion.query(
+            `SELECT id FROM users WHERE username = ?`,
             [username]
         );
 
@@ -32,15 +32,13 @@ const insertUserModel = async () => {
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        await connection.query(
-            'INSERT INTO users (email, username, password) VALUES(?, ?, ?)',
-            [username, email, hashedPassword]
+        await conexion.query(
+            `INSERT INTO users (email, username, password) VALUES (?, ?, ?)`,
+            [email, username, hashedPassword]
         );
     } finally {
-        if (connection) connnection.release();
+        if (conexion) conexion.release();
     }
 };
 
-module.exports = {
-    insertUserModel,
-};
+module.exports = insertUserModel;

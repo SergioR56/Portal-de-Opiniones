@@ -1,13 +1,13 @@
 require('dotenv').config();
 
-const morgan = require('morgan');
 const express = require('express');
-const fileUpload = require('express-fileupload');
+
 const cors = require('cors');
 
 const routes = require('./src/routes');
 
 const bodyParser = require('body-parser');
+
 const {
     notFoundController,
     errorController,
@@ -17,15 +17,11 @@ const { check, validationResult } = require('express-validator');
 
 const app = express();
 app.use(cors());
-app.use(morgan('dev'));
-app.use(fileUpload());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(routes);
-app.use(notFoundController);
-app.use(errorController);
 
 app.get('/', (req, res) => {
     res.send('Bienvenido a la web de reseñas');
@@ -33,7 +29,7 @@ app.get('/', (req, res) => {
 
 app.post('/users'),
     [
-        check('mail').isEmail().normalizeEmail(),
+        check('email').isEmail().normalizeEmail(),
         check('contraseña').isLength({ min: 6 }),
     ],
     (req, res) => {
@@ -54,13 +50,16 @@ app.post('/reseñas'),
             return res.status(422).json({ errors: errors.array() });
         }
     };
-app.use((err, req, res, next) => {
-    console.error(err);
-    res.status(err.httpStatus || 500).json({
-        status: 'error',
-        message: err.message,
-    });
-});
+
+
+
+// Middleware de manejo de errores 404
+app.use(notFoundController);
+
+// Manejador de errores global
+app.use(errorController);
+
+
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is running at https://localhost:${process.env.PORT}`);

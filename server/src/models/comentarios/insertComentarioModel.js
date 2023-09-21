@@ -1,7 +1,7 @@
 // Importamos la función que nos permite obtener una conexión libre con la base de datos.
 const getDb = require('../../db/getDb');
 
-// Función que se conectará a la base de datos y creará un tweet.
+// Función que se conectará a la base de datos y creará un post.
 const insertComentarioModel = async (text, userId) => {
     let connection;
 
@@ -9,11 +9,11 @@ const insertComentarioModel = async (text, userId) => {
         connection = await getDb();
 
         const [comentario] = await connection.query(
-            `INSERT INTO comentarios(text, userId) VALUES(?, ?)`,
+            `INSERT INTO comentarios(text, userId) VALUES (?, ?)`,
             [text, userId]
         );
 
-        // Retornamos el id del tweet que acabamos de insertar.
+        // Retornamos el id del post que acabamos de insertar.
         return comentario.insertId;
     } finally {
         if (connection) connection.release();
