@@ -1,20 +1,19 @@
 require('dotenv').config();
 
+const morgan = require('morgan');
 const express = require('express');
 const fileUpload = require('express-fileupload');
 const cors = require('cors');
 
-
 const routes = require('./src/routes');
 
-const bodyParser = require('body-parser'); 
+const bodyParser = require('body-parser');
 const {
     notFoundController,
     errorController,
 } = require('./src/controllers/errors');
 
-
-const { check, validationResult } = require('express-validator'); 
+const { check, validationResult } = require('express-validator');
 
 const app = express();
 app.use(cors());
@@ -29,61 +28,40 @@ app.use(notFoundController);
 app.use(errorController);
 
 app.get('/', (req, res) => {
-  res.send('Bienvenido a la web de reseñas');
+    res.send('Bienvenido a la web de reseñas');
 });
 
-app.post('/users'), [
+app.post('/users'),
+    [
+        check('mail').isEmail().normalizeEmail(),
+        check('contraseña').isLength({ min: 6 }),
+    ],
+    (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty) {
+            return res.status(422).json({ errors: errors.array() });
+        }
 
-  check('mail').isEmail().normalizeEmail(),
-  check('contraseña').isLength({ min: 6 }),
-], (req, res) => {
+        res.json({ message: 'Usuario creado' });
+    };
 
-  const errors = validationResult(req)
-  if (!errors.isEmpty) 
-  {
-    return res.status(422).json({ errors: errors.array() });
-  }
+app.post('/reseñas'),
+    [check('texto').notEmpty()],
+    (req, res) => {
+        const errors = validationResult(req);
 
-  res.json({ message: 'Usuario creado' });
-};
-
-app.post('/reseñas'), [
-
-
-  check('texto').notEmpty(),
-], (req, res) => 
-
-  const errors = validationResult(req);
-
-
-  if (!errors.isEmpty)
-  {
-    return res.status(422).json({ errors: errors.array() });
-  }
+        if (!errors.isEmpty) {
+            return res.status(422).json({ errors: errors.array() });
+        }
+    };
 app.use((err, req, res, next) => {
-  console.error(err);
-  res.status(err.httpStatus || 500).json({
-    status: 'error',
-    message: err.message,
-  });
+    console.error(err);
+    res.status(err.httpStatus || 500).json({
+        status: 'error',
+        message: err.message,
+    });
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-app.listen(process.env.PORT, () =>{
+app.listen(process.env.PORT, () => {
     console.log(`Server is running at https://localhost:${process.env.PORT}`);
+});
