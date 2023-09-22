@@ -12,11 +12,12 @@ const selectUserByEmailModel = async (email) => {
             [email]
         );
 
-        if (users.length < 1) {
+        if (users.length === 0) {
             invalidCredentialsError();
         }
 
         return users[0];
+        
     } finally {
         if (conexion) conexion.release();
     }

@@ -34,12 +34,13 @@ module.exports = {
             message: 'No se puede dar like más de una vez al mismo elemento',
         };
     },
-    missingFieldsError() {
+    missingFieldsError (){
         throw {
             httpStatus: 400, // Bad request
             code: 'MISSING_FIELDS',
             message: 'Faltan campos',
         };
+    
     },
     notAuthenticatedError() {
         throw {

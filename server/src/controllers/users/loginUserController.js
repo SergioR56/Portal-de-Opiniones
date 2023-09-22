@@ -24,18 +24,14 @@ const loginUserController = async (req, res, next) => {
 
         const tokenInfo = {
             id: user.id,
-            role: user.role,
         };
-
         const token = jwt.sign(tokenInfo, process.env.SECRET, {
-            expiresIn: '10h',
+            expiresIn: '7d',
         });
 
         res.send({
             status: 'ok',
-            data: {
-                token,
-            },
+            data: { token },
         });
     } catch (err) {
         next(err);

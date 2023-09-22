@@ -1,6 +1,6 @@
 const insertUserModel = require('../../models/users/insertUserModel');
 
-const { missingFieldsError } = require('../../services/errorService');
+const { missingFieldsError } = require('../../services/errorService')
 
 const newUserController = async (req, res, next) => {
     try {
@@ -14,7 +14,7 @@ const newUserController = async (req, res, next) => {
 
         res.send({
             status: 'ok',
-            message: 'User registered successfully',
+            message: 'Usuario creado correctamente',
         });
     } catch (err) {
         next(err);
