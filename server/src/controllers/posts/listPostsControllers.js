@@ -2,7 +2,7 @@
 const allPostModel = require('../../models/posts/allPostsModel');
 
 // Función controladora final que selecciona todos los posts.
-const listPostController = async (req, res, next) => {
+const listPostsController = async (req, res, next) => {
     try {
         // Llamar al modelo sin pasar una palabra clave.
         const posts = await allPostModel('', req.user?.id);
@@ -18,7 +18,7 @@ const listPostController = async (req, res, next) => {
     }
 };
 
-module.exports = listPostController;
+module.exports = listPostsController;
 
 
 // // Importamos los modelos.
