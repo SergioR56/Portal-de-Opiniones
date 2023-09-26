@@ -8,20 +8,23 @@ const insertLikeModel = async (postId, userId) => {
 
     try { 
         connection = await getDb();
-
-        const [likes] = await connection.query(
-            `SELECT id FROM likes WHERE postId = ? AND userId = ?`,
-            [postId, userId]
+        const isDislikeExists = await connection.query(
+            `SELECT id FROM dislikes WHERE postId = ? AND userId = ?`,
+            [postId, userId],
         )
-
-        if (likes.length > 0) {
+        if (isDislikeExists[0].length > 0) {
+            await connection.query(
+                `DELETE FROM dislikes WHERE postId = ? AND userId = ?`,
+                [postId, userId],
+                )
+            await connection.query(
+                `INSERT INTO likes (postId, userId) VALUES (?, ?)`,
+                [postId, userId]
+            );
+        } else {
             likeAlreadyExistsError()
         }
 
-        await connection.query(
-            `INSERT INTO likes (postId, userId) VALUES (?, ?)`,
-            [postId, userId]
-        );
     } finally {
         if (connection) connection.release()
     }
