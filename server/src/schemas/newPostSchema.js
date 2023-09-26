@@ -2,15 +2,12 @@
 const joi = require('joi');
 
 // Importamos el objeto con los mensajes de error personalizados.
-const joiErrorMessages = require('../joiErrorMessages');
+const joiErrorMessages = require('../schemas/joiErrorMessages');
 
-// Importamos el esquema de la imagen.
-const imgSchema = require('../imgSchema');
 
 // Creamos el esquema de validación.
 const newPostSchema = joi.object({
     text: joi.string().required().messages(joiErrorMessages),
-    image: imgSchema.optional().messages(joiErrorMessages),
 });
 
 module.exports = newPostSchema;

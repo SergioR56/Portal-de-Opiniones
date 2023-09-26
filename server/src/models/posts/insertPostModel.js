@@ -12,7 +12,7 @@ const insertPostModel = async (text, userId) => {
             `INSERT INTO posts(text, userId) VALUES (?, ?)`,
             [text, userId]
         );
-
+            console.log(post)
         // Retornamos el id del post que acabamos de insertar.
         return post.insertId;
     } finally {

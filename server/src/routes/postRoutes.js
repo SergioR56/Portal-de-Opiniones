@@ -7,28 +7,23 @@
 
 const express = require('express');
 const router = express.Router();
-const {
-    authUserController,
-    authUserOptionalController,
-    postExistsController
-} = require('../middlewares/authUserController');
+    
 
-const {
-    newPostController,
-    listPostsController,
-} = require('../controllers/posts');
+const authUserController  = require('../middlewares/authUserController');
+
+const newPostController = require('../controllers/posts/newPostController');
+const listPostsController = require('../controllers/posts/listPostsControllers');
 
 
 router.post('/posts', authUserController, newPostController);
 
-router.get('/posts', authUserOptionalController, listPostsController);
+router.get('/posts', listPostsController);
 
 
 
 router.delete(
     '/posts/:postId',
-    authUserController,
-    postExistsController
+    authUserController
 );
 
 
