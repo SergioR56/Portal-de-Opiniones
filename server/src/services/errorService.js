@@ -34,13 +34,19 @@ module.exports = {
             message: 'No se puede dar like más de una vez al mismo elemento',
         };
     },
-    missingFieldsError (){
+    dislikeAlreadyExistsError() {
+        throw {
+            httpStatus: 409, // Conflict
+            code: 'DISLIKE_ALREADY_EXISTS',
+            message: 'No se puede dar dislike más de una vez al mismo elemento',
+        };
+    },
+    missingFieldsError() {
         throw {
             httpStatus: 400, // Bad request
             code: 'MISSING_FIELDS',
             message: 'Faltan campos',
         };
-    
     },
     notAuthenticatedError() {
         throw {
