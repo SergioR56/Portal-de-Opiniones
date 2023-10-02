@@ -1,13 +1,15 @@
 const insertPostModel = require('../../models/posts/insertPostModel');
-const { missingFieldsError } = require('../../services/errorService');
+
+const validateSchema = require('../../utils/validateSchema');
+const newPostSchema = require('../../schemas/posts/newPostSchema');
 
 const newPostController = async (req, res, next) => {
     try {
         const { text } = req.body;
 
-        if (!text) {
-            missingFieldsError();
-        }
+        await validateSchema(newPostSchema, {
+            ...req.body,
+        });
 
         const postId = await insertPostModel(text, req.user.id);
 

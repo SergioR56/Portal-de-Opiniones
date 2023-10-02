@@ -1,14 +1,15 @@
 const insertUserModel = require('../../models/users/insertUserModel');
 
-const { missingFieldsError } = require('../../services/errorService')
+const validateSchema = require('../../utils/validateSchema');
+
+const newUserSchema = require('../../schemas/users/newUserSchema');
+
 
 const newUserController = async (req, res, next) => {
     try {
         const { username, email, password } = req.body;
 
-        if (!username || !email || !password) {
-            missingFieldsError();
-        }
+        await validateSchema(newUserSchema, req.body);
 
         await insertUserModel(username, email, password);
 

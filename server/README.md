@@ -47,7 +47,7 @@ Este proyecto consiste en crear una API que funcione como un portal donde la gen
 | id        | INT      | Identificador único del dislike.              |
 | userId    | INT      | Identificador del usuario que dio el dislike. |
 | postId    | INT      | Identificador del post que recibió el dislike.|
-| createdAt | DATETIME | Fecha y hora de creación del like.            |
+| createdAt | DATETIME | Fecha y hora de creación del dislike.            |
 
 ## Endpoints
 
