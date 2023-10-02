@@ -53,18 +53,15 @@ Este proyecto consiste en crear una API que funcione como un portal donde la gen
 
 ### Usuarios:
 
--   POST `/users` - Registro de usuario.
+-   POST `/users/register` - Registro de usuario.
 -   POST `/users/login` - Login de usuario (devuelve token).
 -   GET `/users` - Devuelve información del usuario del token.
--   PUT `/users` - Editar informacion de usuario.
+-   PUT `/users/update` - Editar informacion de usuario.
 
 ### Posts:
 
 -   POST `/posts` - Permite publicar una opinión.
 -   GET `/posts` - Lista de todos los posts.
-
-### Opcionales:
-
 -   POST `/posts/:postId/likes` - Añade un like a un post.
 -   DELETE `/posts/:postsId/likes` - Deshace un like de un post.
 -   POST `/posts/:postId/dislikes` - Añade un dislike a un post.
