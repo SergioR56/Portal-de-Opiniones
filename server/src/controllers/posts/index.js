@@ -4,6 +4,7 @@ const deleteLikeController = require('./deleteLikeController');
 const listPostsController = require('./listPostsControllers');
 const deleteDislikeController = require('./deleteDislikeController');
 const newDislikeController = require('./newDislikeController');
+const deletePostController = require('./deletePostController');
 
 module.exports = {
     newPostController,
@@ -12,4 +13,5 @@ module.exports = {
     newDislikeController,
     deleteDislikeController,
     listPostsController,
+    deletePostController
 }
