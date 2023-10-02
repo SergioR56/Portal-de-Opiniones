@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a1994a2d-5c66-42d8-a5da-c5ceb31eb672",
+		"_postman_id": "27a7069f-ad1b-4904-9d95-aeb771733b35",
 		"name": "Portal-opiniones",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "29852076"
@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"Sergio\",\r\n    \"email\": \"sergio@gmail.com\",\r\n    \"password\": \"123456\"\r\n}\r\n  ",
+							"raw": "{\r\n    \"username\": \"Sergio\",\r\n    \"email\": \"sergio@gmail.com\",\r\n    \"password\": \"1A3.j56\"\r\n}\r\n  ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -45,7 +45,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"sergio@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"raw": "{\r\n    \"email\": \"sergio@gmail.com\",\r\n    \"password\": \"1A3.j56\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -144,19 +144,13 @@
 							}
 						],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "text",
-									"value": "Mi segundo post",
-									"type": "text"
-								},
-								{
-									"key": "image",
-									"type": "file",
-									"src": "/C:/Users/Sergio/Downloads/gengar.jpg"
+							"mode": "raw",
+							"raw": "{\r\n    \"text\": \"Mi primer post\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							]
+							}
 						},
 						"url": {
 							"raw": "http://localhost:8000/posts",
@@ -167,6 +161,13 @@
 							"port": "8000",
 							"path": [
 								"posts"
+							],
+							"query": [
+								{
+									"key": "text",
+									"value": "Mi primer post",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -198,7 +199,7 @@
 							"variable": [
 								{
 									"key": "postId",
-									"value": "2"
+									"value": "1"
 								}
 							]
 						}
@@ -239,6 +240,72 @@
 					"response": []
 				},
 				{
+					"name": "New Dislike",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_user_1}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/posts/:postId/dislikes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"posts",
+								":postId",
+								"dislikes"
+							],
+							"variable": [
+								{
+									"key": "postId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Dislike",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_user_1}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/posts/:postId/dislikes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"posts",
+								":postId",
+								"dislikes"
+							],
+							"variable": [
+								{
+									"key": "postId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "List Posts",
 					"request": {
 						"method": "GET",
@@ -246,8 +313,7 @@
 							{
 								"key": "Authorization",
 								"value": "{{token_user_1}}",
-								"type": "text",
-								"disabled": true
+								"type": "text"
 							}
 						],
 						"url": {
@@ -265,43 +331,6 @@
 									"key": "keyword",
 									"value": "Sergio",
 									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "New Dislike",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token_user_1}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": []
-						},
-						"url": {
-							"raw": "http://localhost:8000/posts/:postId/dislikes",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"posts",
-								":postId",
-								"dislikes"
-							],
-							"variable": [
-								{
-									"key": "postId",
-									"value": "1"
 								}
 							]
 						}

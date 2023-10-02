@@ -1,4 +1,4 @@
-const deleteLikeModel = require("../../models/posts/deleteLikeModel");
+const deleteLikeModel = require('../../models/posts/deleteLikeModel');
 
 const deleteLikeController = async (req, res, next) => {
     try {
@@ -8,7 +8,7 @@ const deleteLikeController = async (req, res, next) => {
 
         res.send({
             status: 'ok',
-            message: 'like deleted successfully',
+            message: 'Like eliminado',
         });
     } catch (err) {
         next(err);

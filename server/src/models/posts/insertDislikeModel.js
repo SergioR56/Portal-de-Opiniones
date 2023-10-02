@@ -3,30 +3,31 @@ const getDb = require('../../db/getDb');
 const { dislikeAlreadyExistsError } = require('../../services/errorService');
 
 const insertDislikeModel = async (postId, userId) => {
-    let connection;
-    
+    let conexion;
+
     try {
-    connection = await getDb();
-    const isLikeExists = await connection.query(
-        `SELECT id FROM likes WHERE postId = ? AND userId = ?`,
-        [postId, userId]
-    );
-    if (isLikeExists[0].length > 0) {
-        await connection.query(
-            `DELETE FROM likes WHERE postId = ? AND userId = ?`,
+        conexion = await getDb();
+
+        const [dislikes] = await conexion.query(
+            `SELECT id FROM dislikes WHERE postId = ? AND userId = ?`,
             [postId, userId]
         );
-     await connection.query(
-         `INSERT INTO dislikes (postId, userId) VALUES (?, ?)`,
-         [postId, userId]
-     );
-    } else {
-        dislikeAlreadyExistsError()
-    }
 
-} finally {
-    if (connection) connection.release();
-}
+        if (dislikes.length > 0) { 
+            dislikeAlreadyExistsError();
+        }
+        await conexion.query(
+            `DELETE FROM likes WHERE postId = ? AND userId = ?`,
+            [postId, userId]
+            );
+        await conexion.query(
+            `INSERT INTO dislikes (postId, userId) VALUES (?, ?)`,
+            [postId, userId]
+            );
+        
+    } finally {
+        if (conexion) conexion.release();
+    }
 };
 
 module.exports = insertDislikeModel;

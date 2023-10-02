@@ -3,26 +3,26 @@ const { notFoundError } = require('../../services/errorService');
 
 
 const deleteLikeModel = async (postId, userId) => {
-    let connection;
+    let conexion;
 
     try {
-        connection = await getDb();
+        conexion = await getDb();
 
-        const [likes] = await connection.query(
+        const [likes] = await conexion.query(
             `SELECT id FROM likes WHERE postId = ? AND userId = ?`,
             [postId, userId]
         );
 
         if (likes.length < 1) {
-            notFoundError();
+            notFoundError('like');
         }
 
-        await connection.query(
+        await conexion.query(
             `DELETE FROM likes WHERE postId = ? AND userId = ?`,
             [postId, userId]
         );
     } finally {
-        if (connection) connection.release();
+        if (conexion) conexion.release();
     }
 };
 

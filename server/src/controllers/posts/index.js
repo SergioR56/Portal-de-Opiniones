@@ -9,7 +9,7 @@ module.exports = {
     newPostController,
     newLikeController,
     deleteLikeController,
-    listPostsController,
-    deleteDislikeController,
     newDislikeController,
+    deleteDislikeController,
+    listPostsController,
 }

@@ -8,7 +8,7 @@ const newLikeController = async (req, res, next) => {
 
         res.send({
             status: 'ok',
-            message: 'like added successfully',
+            message: 'Like agregado',
         });
     } catch (err) {
         next(err);

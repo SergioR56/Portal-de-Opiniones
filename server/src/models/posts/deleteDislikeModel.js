@@ -2,26 +2,26 @@ const getDb = require('../../db/getDb');
 const { notFoundError } = require('../../services/errorService');
 
 const deleteDislikeModel = async (postId, userId) => {
-    let connection;
+    let conexion;
 
     try {
-        connection = await getDb();
+        conexion = await getDb();
 
-        const [dislikes] = await connection.query(
+        const [dislikes] = await conexion.query(
             `SELECT id FROM dislikes WHERE postId = ? AND userId = ?`,
             [postId, userId]
         );
 
         if (dislikes.length < 1) {
-            notFoundError();
+            notFoundError('dislike');
         }
 
-        await connection.query(
+        await conexion.query(
             `DELETE FROM dislikes WHERE postId = ? AND userId = ?`,
             [postId, userId]
         );
     } finally {
-        if (connection) connection.release();
+        if (conexion) conexion.release();
     }
 };
 

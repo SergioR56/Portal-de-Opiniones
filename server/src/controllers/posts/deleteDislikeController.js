@@ -5,10 +5,10 @@ const deleteDislikeController = async (req, res, next) => {
         const { postId } = req.params;
 
         await deleteDislikeModel(postId, req.user.id);
-console.log('deleteDislike', postId, req.user.id);
+
         res.send({
             status: 'ok',
-            message: 'dislike deleted successfully',
+            message: 'Dislike eliminado ',
         });
     } catch (err) {
         next(err);

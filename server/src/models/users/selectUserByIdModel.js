@@ -1,5 +1,5 @@
 const getDb = require('../../db/getDb');
-const { notFoundError } = require('../services/errorService');
+const { notFoundError } = require('../../services/errorService');
 
 const selectUserByIdModel = async (userId) => {
     let conexion;
@@ -8,15 +8,15 @@ const selectUserByIdModel = async (userId) => {
         conexion = await getDb();
 
         const [users] = await conexion.query(
-            `SELECT id, userName FROM users WHERE id = ?`,
+            `SELECT * FROM users WHERE id = ?`,
             [userId]
         );
 
-            if (users.length < 1) {
-                notFoundError('user')
-            }
+        if (users.length === 0) {
+            notFoundError('user');
+        }
+
         return users[0];
-        
     } finally {
         if (conexion) conexion.release();
     }
