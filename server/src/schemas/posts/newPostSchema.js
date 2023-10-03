@@ -5,8 +5,8 @@ const joi = require('joi');
 const joiErrorMessages = require('../joiErrorMessages');
 
 // Creamos el esquema de validación.
-const newTweetSchema = joi.object({
+const newPostSchema = joi.object({
     text: joi.string().required().messages(joiErrorMessages),
 });
 
-module.exports = newTweetSchema;
+module.exports = newPostSchema;
