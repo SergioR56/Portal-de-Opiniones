@@ -63,7 +63,7 @@ Este proyecto consiste en crear una API que funcione como un portal donde la gen
 -   POST `/posts` - Permite publicar una opinión.
 -   GET `/posts` - Lista de todos los posts.
 -   POST `/posts/:postId/likes` - Añade un like a un post.
--   DELETE `/posts/:postsId/likes` - Deshace un like de un post.
+-   DELETE `/posts/:postId/likes` - Deshace un like de un post.
 -   POST `/posts/:postId/dislikes` - Añade un dislike a un post.
--   DELETE `/posts/:postsId/dislikes` - Deshace un dislike de un post.
+-   DELETE `/posts/:postId/dislikes` - Deshace un dislike de un post.
 -   DELETE `/posts/:postId` - Borra un post solo si eres quien lo creó.

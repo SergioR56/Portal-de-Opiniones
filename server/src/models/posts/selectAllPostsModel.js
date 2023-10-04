@@ -27,6 +27,13 @@ const selectAllPostsModel = async (keyword = '', userId = 0) => {
                 GROUP BY p.id;`,
             [userId, userId, `%${keyword}%`, `%${keyword}%`]
         );
+
+        for (const post of posts) {
+            post.owner = Boolean(post.owner);
+            post.likedByMe = Boolean(post.likedByMe);
+            post.dislikedByMe = Boolean(post.dislikedByMe);
+        }
+
         return posts;
     } finally {
         if (conexion) conexion.release();

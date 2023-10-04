@@ -1,13 +1,12 @@
 const selectUserByIdModel = require('../../models/users/selectUserByIdModel');
 const updateUserModel = require('../../models/users/updateUserModel');
-const { missingFieldsError } = require('../../services/errorService');
+const validateSchema = require('../../utils/validateSchema');
+const updateUserSchema = require('../../schemas/users/updateUserSchema')
 const bcrypt = require('bcrypt');
 
 const editUserController = async (req, res, next) => {
     try {
-        if (!req.body.username || !req.body.email || !req.body.password) {
-            missingFieldsError();
-        }
+        await validateSchema(updateUserSchema, req.body);
 
         const user = await selectUserByIdModel(req.userId);
 
