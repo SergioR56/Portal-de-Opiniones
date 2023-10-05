@@ -3,12 +3,10 @@ import {usePosts} from '../../hooks/usePosts'
 import PostSearchForm from '../../forms/PostSearchForm/PostSearchForm'
 import PostListItem from '../../components/PostListItem/PostListItem'
 import './PostSearchPage.css'
-import React from 'react'
-import opinodromo from "../../assets/opinodromoText2.svg"
 
 const PostSearchPage = () => {
     const {useAuthUser} = useAuth()
-    const {posts, setSeachParams, likePostById, deletePostId, loading} = usePosts()
+    const {posts, setSeachParams, loading} = usePosts()
 
     return (
         <main>
@@ -25,8 +23,6 @@ const PostSearchPage = () => {
                                 key={post.id}
                                 useAuthUser={useAuthUser}
                                 post={post}
-                                likePostById={likePostById}
-                                deletePostId={deletePostId}
                             />
                         );
                     })
