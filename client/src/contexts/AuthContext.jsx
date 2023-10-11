@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
     const { setErrMsg } = useError();
 
     const [authUser, setAuthUser] = useState(null);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(getToken());
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -43,9 +43,9 @@ export const AuthProvider = ({ children }) => {
             }
         };
 
-        const token = getToken();
+        
 
-        if (token) fetchUser();
+        if (isAuthenticated) fetchUser();
     }, [isAuthenticated, setErrMsg]);
 
     const authRegister = async (

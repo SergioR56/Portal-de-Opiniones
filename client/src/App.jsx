@@ -19,20 +19,14 @@ const App = () => {
             <Header />
             <ErrorMessage errMsg={errMsg} setErrMsg={setErrMsg} />
             <Routes>
-              <Route path="/" element={<PostSearchPage />}>
-                <Route path="PostSearch" element={<PostSearch/>}>
-                  </Route></Route>
-              <Route path="/register" element={<RegisterPage />}>
-
-              </Route>
-              <Route path="/login" element={<LoginPage/>}></Route>
-              <Route path="/message" element={<PostCreatePage/>}>
-
-              </Route>
-              <Route path="*" element={<NotFoundPage/>}>
-                
-              </Route>
-            </Routes>
+            <Route path='/' element={<PostSearchPage />}></Route>
+        <Route path='/PostSearch' element={<PostSearch />}></Route>
+        <Route path='/register' element={<RegisterPage />}></Route>
+        <Route path='/login' element={<LoginPage />}></Route>
+        <Route path='/message' element={<PostCreatePage />}></Route>
+        <Route path='*' element={<NotFoundPage />}></Route>
+      </Routes>
+            
             <Footer />
     </div>
   )
