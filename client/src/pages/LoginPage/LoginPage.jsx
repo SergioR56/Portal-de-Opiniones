@@ -1,18 +1,19 @@
-import { Navigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+
+import { Navigate } from 'react-router-dom';
 import LoginForm from '../../forms/LoginForm/LoginForm';
 
 const LoginPage = () => {
-    const { authUser, authLogin, loading } = useAuth();
+  const { authUser, authLogin, loading } = useAuth();
 
-    if (authUser) return <Navigate to="/" />;
+  // Si la persona está autenticada redirigimos a la página principal.
+  if (authUser) return <Navigate to='/' />;
 
-    return (
-        <main>
-            <h2>Login</h2>
-            <LoginForm authLogin={authLogin} loading={loading} />
-        </main>
-    );
+  return (
+    <main>
+      <LoginForm authLogin={authLogin} loading={loading} />
+    </main>
+  );
 };
 
 export default LoginPage;
