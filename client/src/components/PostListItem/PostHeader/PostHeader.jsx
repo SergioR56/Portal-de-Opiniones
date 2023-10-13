@@ -1,6 +1,8 @@
-import {PropTypes}  from "prop-types"
+import PropTypes from 'prop-types';
 
-const PostHeader = ({ username, createdAt}) => {
+import './PostHeader.css';
+
+const PostHeader = ({ username, createdAt }) => {
     return (
         <header className="post-header">
             <p>@{username}</p>
@@ -14,12 +16,12 @@ const PostHeader = ({ username, createdAt}) => {
                 })}
             </time>
         </header>
-    )
-}
+    );
+};
 
 PostHeader.propTypes = {
     username: PropTypes.string.isRequired,
     createdAt: PropTypes.string.isRequired,
-}
+};
 
-export default PostHeader
+export default PostHeader;

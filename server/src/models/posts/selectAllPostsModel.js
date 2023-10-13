@@ -24,7 +24,8 @@ const selectAllPostsModel = async (keyword = '', userId = 0) => {
                 LEFT JOIN likes l ON l.postId = p.id
                 LEFT JOIN dislikes d ON d.postId = p.id
                 WHERE u.username LIKE ? OR p.text LIKE ?
-                GROUP BY p.id;`,
+                GROUP BY p.id
+                ORDER BY likes DESC, dislikes ASC, p.createdAt DESC`,
             [userId, userId, `%${keyword}%`, `%${keyword}%`]
         );
 

@@ -37,3 +37,29 @@
         background-position: right;
     }
 }
+
+.post-footer > div > div.off {
+    cursor: pointer;
+    height: 70px;
+    width: 70px;
+    background-image: url('/heart_animation.png');
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: 2900%;
+}
+.post-footer > div > div.off:hover {
+    background-position: left;
+}
+
+.post-footer > div > div.off.like {
+    animation: off-burst 0.8s steps(28) 1;
+    animation-fill-mode: forwards;
+}
+@keyframes off-burst {
+    from {
+        background-position: left;
+    }
+    to {
+        background-position: right;
+    }
+}

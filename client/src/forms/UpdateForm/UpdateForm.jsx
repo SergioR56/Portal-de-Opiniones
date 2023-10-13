@@ -1,18 +1,25 @@
 import PropTypes from 'prop-types';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const RegisterForm = ({ authRegister, loading }) => {
+const UpdateForm = ({ authUser, authUpdate, loading }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatedPassword, setRepeatedPassword] = useState('');
 
+  useEffect(() => {
+    if (authUser) {
+      setUsername(authUser.username);
+      setEmail(authUser.email);
+    }
+  }, [authUser]);
+
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        authRegister(username, email, password, repeatedPassword);
+        authUpdate(username, email, password, repeatedPassword);
       }}
     >
       <label htmlFor='username'>Nombre de usuario:</label>
@@ -54,14 +61,15 @@ const RegisterForm = ({ authRegister, loading }) => {
         required
       />
 
-      <button disabled={loading}>Registrarse</button>
+      <button disabled={loading}>Actualizar</button>
     </form>
   );
 };
 
-RegisterForm.propTypes = {
-  authRegister: PropTypes.func.isRequired,
+UpdateForm.propTypes = {
+  authUpdate: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
+  authUser: PropTypes.object.isRequired,
 };
 
-export default RegisterForm;
+export default UpdateForm;
