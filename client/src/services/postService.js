@@ -72,7 +72,7 @@ export const dislikePostService = async (postId, method) => {
 export const deletePostService = async (postId) => {
   const token = getToken();
   
-  const res = await fetch(`${baseURL}/posts/${postId}/message`, {
+  const res = await fetch(`${baseURL}/posts/${postId}`, {
     method: 'DELETE',
     headers: {
       Authorization: token,

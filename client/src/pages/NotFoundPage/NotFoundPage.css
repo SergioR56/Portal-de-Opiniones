@@ -1,0 +1,19 @@
+.not-found-page {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.not-found-page h1 {
+    font-size: 48px;
+    margin: 0 0 32px;
+}
+
+.not-found-page h2 {
+    font-size: 22px;
+    margin: 0;
+    opacity: 0.4;
+}

@@ -1,7 +1,10 @@
+import './NotFoundPage.css';
+
 const NotFoundPage = () => {
   return (
-    <main>
-      <h2>Pagina no encontrada - 404 </h2>
+    <main className="not-found-page">
+      <h1>Error 404</h1>
+      <h2>Pagina no encontrada</h2>
     </main>
   );
 };
