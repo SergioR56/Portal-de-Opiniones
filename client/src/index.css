@@ -1,5 +1,6 @@
 :root {
     --blue-color: #1da1f2;
+    --purple-color: #9371ad;
 }
 
 * {
@@ -9,7 +10,7 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Autour One', sans-serif;
 }
 
 div.app {
@@ -38,15 +39,22 @@ form > input {
     font-size: 1.1rem;
 }
 
-form button,
-.post-footer button {
-    margin-top: 0.5rem;
-    padding: 0.5rem 1rem;
-    font-weight: bold;
-    text-align: center;
-    background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(118, 118, 118);
+button {
+    padding: 8px 12px;
+    margin: 0;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease-out;
     cursor: pointer;
+}
+
+button:hover {
+    border-color: #000;
 }
 
 input,

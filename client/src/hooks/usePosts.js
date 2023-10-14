@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { listPostService } from '../services/postService';
+import { dislikePostService, likePostService, listPostService } from '../services/postService';
 
 export const usePosts = () => {
   const [posts, setPosts] = useState();
@@ -28,40 +28,20 @@ export const usePosts = () => {
 
 
   //Agregar o eliminar like
-  const likePostById = (postId) => {
-    const newPosts = posts.map((post) => {
-      if (post.id === postId) {
-        const likedByMe = !post.likedByMe;
-
-      
-
-        const likes = likedByMe ? post.likes + 1 : post.likes - 1;
-
-        return { ...post, likedByMe, likes };
-      }
-      return post;
-    });
-
-    setPosts(newPosts);
+  const likePostById = async (postId, method) => {
+    await likePostService(postId, method);
+         const body = await listPostService(searchParams);
+         setPosts(body.data.posts);
   };
 
   //Agregar o eliminar dislike
-  const dislikePostById = (postId) => {
-    const newPosts = posts.map((post) => {
-      if (post.id === postId) {
-        const dislikedByMe = !post.dislikedByMe;
+  const dislikePostById = async (postId, method) => {
 
-        const dislikes = dislikedByMe ? post.dislikes + 1 : post.dislikes - 1;
-
-        return { ...post, dislikedByMe, dislikes };
-      }
-      return post;
-    });
-
-    setPosts(newPosts);
+   await dislikePostService(postId, method);
+        const body = await listPostService(searchParams);
+        setPosts(body.data.posts);
   };
 
-  //Eliminar post
   const deletePostById = (postId) => {
     const newPosts = posts.filter((post) => post.id !== postId);
 

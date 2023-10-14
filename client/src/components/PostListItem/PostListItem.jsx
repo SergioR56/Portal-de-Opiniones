@@ -17,19 +17,21 @@ const PostListItem = ({
   return (
     <li className='post'>
       <PostHeader username={post.username} createdAt={post.createdAt} />
-      <PostBody text={post.text} />
-      <PostFooter
-        authUser={authUser}
-        postId={post.id}
-        owner={post.owner}
-        likes={post.likes}
-        likedByMe={post.likedByMe}
-        dislikes={post.dislikes}
-        dislikedByMe={post.dislikedByMe}
-        likePostById={likePostById}
-        dislikePostById={dislikePostById}
-        deletePostById={deletePostById}
-      />
+      <div className='post-content'>
+        <PostBody text={post.text} />
+        <PostFooter
+          authUser={authUser}
+          postId={post.id}
+          owner={post.owner}
+          likes={post.likes}
+          likedByMe={post.likedByMe}
+          dislikes={post.dislikes}
+          dislikedByMe={post.dislikedByMe}
+          likePostById={likePostById}
+          dislikePostById={dislikePostById}
+          deletePostById={deletePostById}
+        />
+      </div>
     </li>
   );
 };

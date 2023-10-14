@@ -1,6 +1,17 @@
 div.app > footer {
-    text-align: center;
+    text-align: right;
     letter-spacing: 1px;
     padding: 2rem;
-    background-color: black
+    background-color: #000;
+    color: #fff;
+}
+
+div.app > footer a {
+    color:#fff;
+    transition: all 0.2s ease-out;
+    text-decoration: none;
+}
+
+div.app > footer a:hover {
+    opacity: 0.6;
 }

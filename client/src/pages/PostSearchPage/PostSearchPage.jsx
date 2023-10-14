@@ -4,7 +4,6 @@ import { useAuth } from '../../hooks/useAuth';
 import PostListItem from '../../components/PostListItem/PostListItem';
 
 import './PostSearchPage.css';
-import PostCreateForm from '../../forms/PostCreateForm/PostCreateForm';
 
 const PostSearchPage = () => {
   const { authUser } = useAuth();
@@ -17,11 +16,6 @@ const PostSearchPage = () => {
 
   return (
     <main>
-      {authUser && (
-        <>
-          <PostCreateForm />
-        </>
-      )}
 
       <ul className='post-list'>
         {posts?.length > 0 ? (
