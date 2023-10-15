@@ -1,9 +1,7 @@
 import PropTypes from 'prop-types';
 import { userPropTypes } from '../../../utils/customPropTypes';
 import { useState } from 'react';
-import {
-  deletePostService,
-} from '../../../services/postService';
+import { deletePostService } from '../../../services/postService';
 
 import './PostFooter.css';
 
@@ -30,7 +28,6 @@ const PostFooter = ({
       const method = likedByMe ? 'delete' : 'post';
 
       // Modificamos el like en la base de datos.
-      
 
       // Modificamos el array de posts en el State.
       likePostById(postId, method);
@@ -107,7 +104,9 @@ const PostFooter = ({
         </div>
 
         <div
-          className={`action-item action-item-dislike ${dislikedByMe ? 'active' : ''}`}
+          className={`action-item action-item-dislike ${
+            dislikedByMe ? 'active' : ''
+          }`}
           onClick={() => {
             // Si estamos logeados y loading no está establecido a true permitimos
             // al usuario crear o eliminar el dislike.
@@ -130,7 +129,9 @@ const PostFooter = ({
           <p>{dislikes}</p>
         </div>
       </div>
-      {owner && <button onClick={() => handleDeletePost()}>Eliminar</button>}
+      {authUser && owner && (
+        <button onClick={() => handleDeletePost()}>Eliminar</button>
+      )}
     </footer>
   );
 };
@@ -147,7 +148,5 @@ PostFooter.propTypes = {
   dislikePostById: PropTypes.func.isRequired,
   deletePostById: PropTypes.func.isRequired,
 };
-
-
 
 export default PostFooter;
