@@ -10,11 +10,11 @@ Este proyecto consiste en crear una API que funcione como un portal donde la gen
 
 ## Rutas Web
 
--   POST `/` - Pagina de inicio.
+-   GET `/` - Pagina de inicio.
 -   POST `/register` - Registro de usuario.
 -   POST `/login` - Login de usuario (devuelve token).
--   PUT `/update` - Editar informacion de usuario.
 -   POST `/message` - Enviar una opinion.
+-   PUT `/update` - Editar informacion de usuario.
 
 
 ## Instalar en server
